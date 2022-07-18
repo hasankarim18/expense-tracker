@@ -16,11 +16,13 @@ function Expenses() {
 
     return (
         <div className="container text-center" >
-            <h1>Lets started...</h1>
-            <div className="col-12 col-sm-10 col-md-10">
-                <MyCard className="expenses">
-                    {expenseItem}
-                </MyCard>
+            <h1>Lets started... centered branch -development </h1>
+            <div className="row justify-content-center">
+                <div className="col-12 col-sm-10 col-md-10">
+                    <MyCard className="expenses">
+                        {expenseItem}
+                    </MyCard>
+                </div>
             </div>
         </div>
 

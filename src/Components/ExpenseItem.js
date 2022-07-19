@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import './ExpenseItem.css'
-import dateFormat, { masks } from "dateformat"; import ExpenseDate from './ExpenseDate';
+import ExpenseDate from './ExpenseDate';
 import MyCard from './UI/Card';
 
 
 const ExpenseItem = (props) => {
+
 
     return (
         <MyCard className="expense-item" >
@@ -15,7 +16,6 @@ const ExpenseItem = (props) => {
                 <h2> {props.title} </h2>
                 <div className="expense-item__price" >{props.amount}</div>
             </div>
-            <button>Change title</button>
         </MyCard>
     )
 }

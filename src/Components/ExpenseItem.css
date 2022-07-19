@@ -16,7 +16,11 @@
     flex-flow: column-reverse;
     justify-content: flex-start;
     flex: 1;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.expense-item__description {
+    text-align: left;
 }
 
 .expense-item h2 {
@@ -25,6 +29,7 @@
     flex: 1;
     margin: 0 1rem;
     color: white;
+
 }
 
 .expense-item__price {

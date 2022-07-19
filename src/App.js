@@ -7,10 +7,18 @@ import NewExpense from './Components/NewExpense/NewExpense';
 function App() {
 
 
+  const newExpense = (data) => {
+    let newExpenseData = {
+      ...data,
+      id: Math.random()
+    }
+    console.log('new Expense', newExpenseData)
+    return newExpense
+  }
 
   return (
     <div>
-      <NewExpense />
+      <NewExpense newExpense={newExpense} />
       <Expenses />
     </div>
   );

@@ -18,6 +18,30 @@ const expenses = [
         amount: 450,
         date: new Date(2021, 5, 12),
     },
+    {
+        id: 'e5',
+        title: 'New Chair (Wooden)',
+        amount: 450,
+        date: new Date(2019, 5, 12),
+    },
+    {
+        id: 'e6',
+        title: 'Sofa (Partex)',
+        amount: 450,
+        date: new Date(2019, 5, 12),
+    },
+    {
+        id: 'e7',
+        title: 'Bicycle',
+        amount: 450,
+        date: new Date(2022, 5, 12),
+    },
+    {
+        id: 'e8',
+        title: 'Trimmer',
+        amount: 550,
+        date: new Date(2021, 5, 12),
+    },
 ];
 
 export { expenses }

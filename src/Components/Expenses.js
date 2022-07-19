@@ -16,7 +16,7 @@ function Expenses() {
 
     return (
         <div className="container text-center" >
-
+            <h1>Practice started paraller to starter</h1>
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-10 col-md-10">
                     <MyCard className="expenses">

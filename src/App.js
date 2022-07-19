@@ -11,10 +11,8 @@ function App(props) {
 
   const [filteredYear, setFilteredYear] = useState(new Date().getFullYear().toString())
 
-
-
   const filtterChangeHandler = selectedYear => {
-    console.log(selectedYear)
+
     setFilteredYear(selectedYear)
 
   }
@@ -23,16 +21,11 @@ function App(props) {
     return item.date.getFullYear().toString() === filteredYear
   })
 
-  console.log('filteredYear', filteredYear)
-  console.log('filteredExpenses', filteredExpenses)
-
-
   const newExpense = (data) => {
     let newExpenseData = {
       ...data,
       id: Math.random()
     }
-
     setExpensesData((prevExpense => {
       return ([newExpenseData, ...prevExpense])
     }))
@@ -42,6 +35,7 @@ function App(props) {
   return (
     <div>
       <NewExpense newExpense={newExpense} />
+
       <Expenses
         filteredYear={filteredYear}
         filtterChangeHandler={filtterChangeHandler}

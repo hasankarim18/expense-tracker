@@ -4,6 +4,7 @@ import MyCard from './UI/Card';
 import './Expenses.css'
 import ExpensesFilter from './ExpenseFilter';
 import React, { useState } from 'react';
+import ExpensesChart from './ExpensesChart';
 
 function Expenses(props) {
 
@@ -28,7 +29,11 @@ function Expenses(props) {
                         <ExpensesFilter
                             selected={props.filteredYear}
                             filtterChangeHandler={props.filtterChangeHandler} />
-                        {expenseItem}
+
+                        <ExpensesChart expenses={props.expenses} />
+
+                        {props.expenses.length === 0 ? <h3>No item to show</h3> : expenseItem}
+
                     </MyCard>
                 </div>
             </div>

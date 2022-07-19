@@ -25,7 +25,6 @@ function Expenses() {
                 </div>
             </div>
         </div>
-
     );
 }
 

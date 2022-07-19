@@ -4,7 +4,7 @@ import './ExpenseForm.css'
 const ExpenseForm = (props) => {
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState('')
-    const [expenseDate, setExpenseDate] = useState('')
+    const [expenseDate, setExpenseDate] = useState(new Date().toDateString())
 
     //  //   const [userInput, setUserInput] = useState({
     //         title: '',
@@ -71,9 +71,9 @@ const ExpenseForm = (props) => {
         // emtying the input
         setTitle('')
         setAmount('')
-        setExpenseDate('')
+        setExpenseDate(new Date().toDateString())
 
-        //  console.log(expenseData)
+        //console.log(expenseData)
         props.newExpense(expenseData)
 
     }

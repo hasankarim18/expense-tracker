@@ -12,16 +12,27 @@ import { connect } from 'react-redux'
 import MyModal from '../UI/MyModal';
 import SignUpForm from '../Auth/SignUpForm';
 import LoginForm from '../Auth/LoginForm';
+import { signOutFunc, isUserSingedIn, isUserSignedOUt } from '../../Redux/actionCreators'
+import Spinner from '../UI/Spinner';
 
 
 
 const mapStateToProps = state => {
     return {
-        iLoginFormOpen: state.expense.iLoginFormOpen
+        iLoginFormOpen: state.expense.iLoginFormOpen,
+        isSignOutLoading: state.expense.isSignOutLoading,
+        isSignOutSuccess: state.expense.isSignOutSuccess,
+        isSignOutFailed: state.expense.isSignOutFailed
     }
 }
 
-
+const mapDispatchToProps = dispatch => {
+    return {
+        signOutFunc: () => dispatch(signOutFunc()),
+        //  isUserSingedIn: () => dispatch(isUserSingedIn()),
+        // isUserSignedOUt: () => dispatch(isUserSignedOUt())
+    }
+}
 
 
 
@@ -33,9 +44,11 @@ class Navigation extends React.Component {
         this.state = {
             isOpen: false,
             loginModal: false,
-            signUpModal: false
+            signUpModal: false,
+            signOutModal: false
         };
     }
+
 
 
     toggle() {
@@ -59,10 +72,24 @@ class Navigation extends React.Component {
         })
     }
 
+    showSignOut = () => {
+        this.setState({
+            signOutModal: !this.state.signOutModal,
+            loginModal: false,
+            signUpModal: false
+        })
+    }
+
+    onSingOut = () => {
+        this.props.signOutFunc()
+    }
+
 
 
 
     render() {
+
+
         let showLoginModal = null
 
         if (this.state.loginModal === true && this.state.isOpen === false) {
@@ -92,7 +119,22 @@ class Navigation extends React.Component {
                                 <NavLink onClick={this.showSignUp} >Sign Up</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink >Logout</NavLink>
+                                <NavLink onClick={this.onSingOut} >
+                                    <div className="d-flex" >
+                                        <span onClick={this.showSignOut} className="me-2" >
+                                            Sgin Out
+                                        </span>
+                                        {
+                                            this.props.isSignOutLoading ?
+                                                <span>
+                                                    <Spinner />
+                                                </span>
+                                                : null
+                                        }
+
+                                    </div>
+
+                                </NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
@@ -103,9 +145,16 @@ class Navigation extends React.Component {
                     }
 
                 </div>
+                {
+                    this.state.signOutModal ?
+                        <MyModal onClose={this.showSignOut} > Sing out successfully
+                            <LoginForm />
+                        </MyModal>
+                        : ''
+                }
             </div>
         );
     }
 }
 
-export default connect(mapStateToProps)(Navigation)
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

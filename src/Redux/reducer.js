@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import { expenses } from '../data/expenseData'
+import * as actions from './actionTypes'
 
 
 const initialState = {
-    expenses: expenses
+    expenses: expenses,
+    iLoginFormOpen: false
 }
 
 
@@ -11,7 +13,20 @@ const initialState = {
 
 
 const expenseReducer = (state = initialState, action) => {
-    return state
+
+    switch (action.type) {
+
+        case actions.LOGIN_TOGGLE:
+            return {
+                ...state,
+                iLoginFormOpen: !state.iLoginFormOpen
+            }
+
+
+        default:
+            return state
+    }
+
 }
 
 

@@ -67,7 +67,6 @@ const ExpenseForm = (props) => {
             date: new Date(expenseDate)
         }
 
-
         // emtying the input
         setTitle('')
         setAmount('')

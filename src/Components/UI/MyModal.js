@@ -17,7 +17,7 @@ const ModalBody = props => {
     return (
         <div className={classes.modal}>
             <div className={classes.content} >
-                <div>
+                <div style={{ padding: '20px' }}>
                     {props.children}
                 </div>
             </div>

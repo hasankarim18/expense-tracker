@@ -4,4 +4,4 @@ import { Reducer } from './reducer'
 
 
 
-const expenseStore = createStore(Reducer)
+export const expenseStore = createStore(Reducer)

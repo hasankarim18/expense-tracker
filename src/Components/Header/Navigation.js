@@ -22,7 +22,9 @@ const mapStateToProps = state => {
         iLoginFormOpen: state.expense.iLoginFormOpen,
         isSignOutLoading: state.expense.isSignOutLoading,
         isSignOutSuccess: state.expense.isSignOutSuccess,
-        isSignOutFailed: state.expense.isSignOutFailed
+        isSignOutFailed: state.expense.isSignOutFailed,
+        isUserSignedIn: state.expense.isUserSignedIn,
+        isUserSignedOut: state.expense.isUserSignedOut
     }
 }
 
@@ -112,30 +114,44 @@ class Navigation extends React.Component {
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse className="justify-content-end" isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink onClick={this.showLogin} >Login</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink onClick={this.showSignUp} >Sign Up</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink onClick={this.onSingOut} >
-                                    <div className="d-flex" >
-                                        <span onClick={this.showSignOut} className="me-2" >
-                                            Sgin Out
-                                        </span>
-                                        {
-                                            this.props.isSignOutLoading ?
-                                                <span>
-                                                    <Spinner />
+
+                            {
+                                this.props.isUserSignedOut ?
+                                    <>
+                                        <NavItem>
+                                            <NavLink onClick={this.showLogin} >Login</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink onClick={this.showSignUp} >Sign Up</NavLink>
+                                        </NavItem>
+                                    </>
+                                    : null
+                            }
+
+
+                            {
+                                this.props.isUserSignedIn ?
+                                    <NavItem>
+                                        <NavLink onClick={this.onSingOut} >
+                                            <div className="d-flex" >
+                                                <span onClick={this.showSignOut} className="me-2" >
+                                                    Sgin Out
                                                 </span>
-                                                : null
-                                        }
+                                                {
+                                                    this.props.isSignOutLoading ?
+                                                        <span>
+                                                            <Spinner />
+                                                        </span>
+                                                        : null
+                                                }
 
-                                    </div>
+                                            </div>
+                                        </NavLink>
+                                    </NavItem>
 
-                                </NavLink>
-                            </NavItem>
+                                    : null
+                            }
+
                         </Nav>
                     </Collapse>
                 </Navbar>

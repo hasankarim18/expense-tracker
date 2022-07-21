@@ -1,9 +1,29 @@
 import React, { useEffect } from 'react'
 import Main from './Main'
+import { authCheck } from './Redux/actionCreators'
+
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => {
+  return {
+    isUserSignedIn: state.expense.isUserSignedIn,
+    isUserSignedOut: state.expense.isUserSignedOut
+  }
+}
 
 
+const mapDispatchToProps = dispatch => {
+  return {
+    authCheck: () => dispatch(authCheck())
+  }
+}
 
-const App = () => {
+const App = (props) => {
+
+  useEffect(() => {
+    props.authCheck()
+  }, [])
+
 
 
   return (
@@ -17,4 +37,4 @@ const App = () => {
   )
 }
 
-export default App
+export default connect(mapStateToProps, mapDispatchToProps)(App)

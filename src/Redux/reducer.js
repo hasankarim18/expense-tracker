@@ -14,7 +14,9 @@ const initialState = {
     isSignOutFailed: false,
     singInLoading: false,
     singInSuccess: false,
-    singInFailed: false
+    singInFailed: false,
+    isUserSignedIn: false,
+    isUserSignedOut: false
 }
 
 
@@ -59,7 +61,9 @@ const expenseReducer = (state = initialState, action) => {
                 isSignOutLoading: false,
                 isSignOutSuccess: true,
                 isSignOutFailed: false,
-                singInSuccess: false
+                singInSuccess: false,
+                isUserSignedOut: true,
+                isUserSignedIn: false
             }
         case actions.SIGN_UP_FAILED:
             return {
@@ -80,7 +84,9 @@ const expenseReducer = (state = initialState, action) => {
                 ...state,
                 singInLoading: false,
                 singInSuccess: true,
-                singInFailed: false
+                singInFailed: false,
+                isUserSignedOut: false,
+                isUserSignedIn: true
             }
         case actions.SIGN_IN_FAILED:
             return {
@@ -88,6 +94,19 @@ const expenseReducer = (state = initialState, action) => {
                 singInLoading: false,
                 singInSuccess: false,
                 singInFailed: true
+            }
+        case actions.IS_USER_SIGNED_IN:
+            return {
+                ...state,
+                isUserSignedIn: true,
+                isUserSignedOut: false
+            }
+
+        case actions.IS_USER_SIGNED_OUT:
+            return {
+                ...state,
+                isUserSignedIn: false,
+                isUserSignedOut: true
             }
 
 

@@ -87,6 +87,7 @@ export const signOutFunc = () => dispatch => {
 
     signOut(auth).then(() => {
         // Sign-out successful.
+        localStorage.removeItem('uid')
         dispatch(signOutSuccess())
     }).catch((error) => {
         // An error happened.
@@ -97,6 +98,36 @@ export const signOutFunc = () => dispatch => {
 
 /** 
  * Authentication status
+ */
+
+
+
+
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+
+        console.log('user logged in')
+        localStorage.setItem('uid', uid)
+
+        // ...
+        isUserSingedIn()
+    } else {
+        // User is signed out
+        // ...
+
+        console.log('user not logged in')
+    }
+});
+
+
+
+/**
+ * auth check
+ * 
  */
 
 export const isUserSingedIn = () => {
@@ -113,27 +144,15 @@ export const isUserSignedOUt = () => {
 
 
 
+export const authCheck = () => dispatch => {
+    const uid = localStorage.getItem('uid')
 
-
-
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        console.log('user logged in')
-        //  dispatch(isUserSingedIn)
-        // ...
-        isUserSingedIn()
-    } else {
-        // User is signed out
-        // ...
-        isUserSignedOUt()
-        console.log('user not logged in')
+    if (!uid) {
+        dispatch(isUserSignedOUt())
+    } else if (uid) {
+        dispatch(isUserSingedIn())
     }
-});
-
-
+}
 
 
 /**
@@ -177,8 +196,5 @@ export const signIn = (email, password) => dispatch => {
             dispatch(signInFailed)
             console.log('sing in failed')
         });
-
-
-
 
 }

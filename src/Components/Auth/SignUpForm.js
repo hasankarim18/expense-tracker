@@ -1,6 +1,18 @@
 import React, { useState } from 'react'
+import { signUp } from '../../Redux/actionCreators'
 
-const SignUpForm = () => {
+import { connect } from 'react-redux'
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        signUp: (email, password) => dispatch(signUp(email, password))
+    }
+}
+
+
+
+const SignUpForm = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -9,16 +21,17 @@ const SignUpForm = () => {
         e.preventDefault()
         // console.log('sign up')
         console.log(email, password)
+        props.signUp(email, password)
     }
 
     const onEmailHandler = (e) => {
         setEmail(e.target.value)
-        console.log(e.target.value)
+        //console.log(e.target.value)
     }
 
     const onPasswordHandler = (e) => {
         setPassword(e.target.value)
-        console.log(e.target.value)
+        //console.log(e.target.value)
     }
 
     return (
@@ -49,4 +62,4 @@ const SignUpForm = () => {
     )
 }
 
-export default SignUpForm
+export default connect(null, mapDispatchToProps)(SignUpForm)

@@ -5,7 +5,7 @@ import * as actions from './actionTypes'
 
 const initialState = {
     expenses: expenses,
-    iLoginFormOpen: false
+    iLoginFormOpen: false,
 }
 
 
@@ -15,12 +15,8 @@ const initialState = {
 const expenseReducer = (state = initialState, action) => {
 
     switch (action.type) {
-
-        case actions.LOGIN_TOGGLE:
-            return {
-                ...state,
-                iLoginFormOpen: !state.iLoginFormOpen
-            }
+        case actions.SIGN_UP:
+            console.log(action.payload)
 
 
         default:
